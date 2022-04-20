@@ -2,7 +2,7 @@
 # your opencv/build directory should be in your system PATH
 
 # set minimum required version for cmake
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 
 # define the project name
 set(project_name "Chapter 9")
