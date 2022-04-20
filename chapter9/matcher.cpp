@@ -30,8 +30,8 @@ int main()
 	// image matching
 
 	// 1. Read input images
-	cv::Mat image1= cv::imread("church01.jpg",cv::IMREAD_GRAYSCALE);
-	cv::Mat image2= cv::imread("church02.jpg",cv::IMREAD_GRAYSCALE);
+	cv::Mat image1= cv::imread("church01.jpg", cv::IMREAD_GRAYSCALE);
+	cv::Mat image2= cv::imread("church02.jpg", cv::IMREAD_GRAYSCALE);
 
 	// 2. Define keypoints vector
 	std::vector<cv::KeyPoint> keypoints1;
