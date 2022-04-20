@@ -159,8 +159,8 @@ int main()
 	// scale-invariance test
 
 	// Read input images
-	image1= cv::imread("church01.jpg",CV_LOAD_IMAGE_GRAYSCALE);
-	image2= cv::imread("church03.jpg",CV_LOAD_IMAGE_GRAYSCALE);
+	image1= cv::imread("church01.jpg",cv::IMREAD_GRAYSCALE);
+	image2= cv::imread("church03.jpg",cv::IMREAD_GRAYSCALE);
 
 	std::cout << "Number of SIFT keypoints (image 1): " << keypoints1.size() << std::endl; 
 	std::cout << "Number of SIFT keypoints (image 2): " << keypoints2.size() << std::endl; 
