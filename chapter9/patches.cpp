@@ -146,7 +146,7 @@ int main()
 		roi,    // search region
 		target, // template
 		result, // result
-		CV_TM_SQDIFF); // similarity measure
+		cv::TM_SQDIFF); // similarity measure
 
 	// find most similar location
 	double minVal, maxVal;
