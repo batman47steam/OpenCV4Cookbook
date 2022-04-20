@@ -10,8 +10,11 @@ set(project_name "Chapter 9")
 # set the project name
 project("${project_name}")
 
-# this is a c++11 project
-set(CMAKE_CXX_FLAGS "${CMAKER_CXX_FLAGS} -std=c++11")
+# 设置指定的c++编译器版本是必须的，如果不设置，或者为OFF，则指定版本不可用时，回使用上一版本
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 指定为c++17
+set(CMAKE_CXX_STANDARD 17)
 
 # add opencv package to the project
 find_package(OpenCV REQUIRED)
