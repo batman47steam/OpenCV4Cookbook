@@ -207,7 +207,7 @@ class TargetMatcher {
 					  cv::Scalar(255, 255, 255),  // color of the lines
 					  cv::Scalar(255, 255, 255),  // color of the keypoints
 					  std::vector<char>(),
-					  2);
+					  cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
 				  cv::imshow("Target matches", imageMatches);
 				  cv::waitKey();
 			  }
