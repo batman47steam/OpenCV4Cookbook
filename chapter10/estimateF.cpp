@@ -59,11 +59,11 @@ int main()
 	// Draw the kepoints
 	cv::Mat imageKP;
 	cv::drawKeypoints(image1,keypoints1,imageKP,cv::Scalar(255,255,255),cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
-	cv::namedWindow("Right SIFT Features");
-	cv::imshow("Right SIFT Features",imageKP);
+	//cv::namedWindow("Right SIFT Features");
+	//cv::imshow("Right SIFT Features",imageKP);
 	cv::drawKeypoints(image2,keypoints2,imageKP,cv::Scalar(255,255,255),cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
-	cv::namedWindow("Left SIFT Features");
-	cv::imshow("Left SIFT Features",imageKP);
+	//cv::namedWindow("Left SIFT Features");
+	//cv::imshow("Left SIFT Features",imageKP);
 
 	// Construction of the matcher 
 	cv::BFMatcher matcher(cv::NORM_L2,true);

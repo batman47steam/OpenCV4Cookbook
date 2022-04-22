@@ -50,12 +50,15 @@ class RobustMatcher {
 
   public:
 
+	  //第二个参数是提供了默认值的，我理解的其实是提供了一个空的DescriptorExtractor，所以在下面的时候要检查
+	  //descriptor是否为空，为空就让这个descriptor也是SIFT
 	  RobustMatcher(const cv::Ptr<cv::FeatureDetector> &detector, 
 		            const cv::Ptr<cv::DescriptorExtractor> &descriptor= cv::Ptr<cv::DescriptorExtractor>())
 		  : detector(detector), descriptor(descriptor),normType(cv::NORM_L2), 
 		    ratio(0.8f), refineF(true), refineM(true), confidence(0.98), distance(1.0) {	  
 
 		// in this case use the associated descriptor
+		// 使用和dector对应的descriptor
 		if (!this->descriptor) { 
 			this->descriptor = this->detector;
 		} 
@@ -74,6 +77,7 @@ class RobustMatcher {
 	  }
 
 	  // Set the norm to be used for matching
+	  // 如果是ORB是不是要用汉明距离了
 	  void setNormType(int norm) {
 
 		  normType= norm;
@@ -138,6 +142,8 @@ class RobustMatcher {
 	  }
 
 	  // Insert symmetrical matches in symMatches vector
+	  // 这个是不是就是交叉验证，第一张图为住来一遍，第二张图为主再来一遍
+	  // 如果在两个方向上都是对应点，才会被认为是真正的对应点
 	  void symmetryTest(const std::vector<cv::DMatch>& matches1,
 		                const std::vector<cv::DMatch>& matches2,
 					    std::vector<cv::DMatch>& symMatches) {
@@ -214,6 +220,8 @@ class RobustMatcher {
 		    confidence);     // confidence probability
 	
 		// extract the surviving (inliers) matches
+		// 他的这个inliers里面都是只有0和1，所以我要把原本的match也加上，这样我才能把
+		// 实际的匹配项给取出来，inliers就相当于是一个mask
 		std::vector<uchar>::const_iterator itIn= inliers.begin();
 		std::vector<cv::DMatch>::const_iterator itM= matches.begin();
 		// for all matches
@@ -242,6 +250,9 @@ class RobustMatcher {
 			}
 
 			// Compute 8-point F from all accepted matches
+			// 这里也是一个要注意的地方，在前面用cv::FM_7POINT的时候，points2里面是真的只有7个点
+			// 但是这里他是提供了所有优质的匹配项去计算fundamental matrix
+			// 所以才称的上是真正的refine吧
 			fundamental= cv::findFundamentalMat(
 				points1,points2, // matching points
 				cv::FM_8POINT); // 8-point method
@@ -250,6 +261,9 @@ class RobustMatcher {
 
 				std::vector<cv::Point2f> newPoints1, newPoints2;	
 				// refine the matches
+				// 这个是在你已经有很靠谱的F matrix下
+				// 让你的那些匹配点尽可能的往对极线上靠
+				// (暂时不知道这个操作有什么深层次的意义
 				correctMatches(fundamental,             // F matrix
 					           points1, points2,        // original position
 							   newPoints1, newPoints2); // new position
