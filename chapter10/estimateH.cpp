@@ -71,7 +71,8 @@ int main()
 					imageMatches,		// the image produced
 					cv::Scalar(255,255,255),  // color of the lines
 					cv::Scalar(255,255,255),  // color of the keypoints
-					std::vector<char>(), 2);
+					std::vector<char>(),
+					cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
 	cv::namedWindow("Matches (pure rotation case)");
 	cv::imshow("Matches (pure rotation case)",imageMatches);
 	
@@ -134,7 +135,7 @@ int main()
 
 	cv::Mat panorama; // output panorama
 	// create the stitcher
-	cv::Ptr<Stitcher> stitcher = cv::Stitcher::create((Stitcher::PANORAMA));
+	cv::Ptr<cv::Stitcher> stitcher = cv::Stitcher::create((cv::Stitcher::PANORAMA));
 	// stitch the images
 	cv::Stitcher::Status status = stitcher->stitch(images, panorama);
 
