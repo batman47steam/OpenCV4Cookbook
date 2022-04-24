@@ -59,8 +59,8 @@ int main()
 					std::vector<char>(),
 		cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
 	
-	cv::namedWindow("Matches");
-	cv::imshow("Matches",imageMatches);
+	//cv::namedWindow("Matches");
+	//cv::imshow("Matches",imageMatches);
 	
 	// Convert keypoints into Point2f	
 	std::vector<cv::Point2f> points1, points2;
